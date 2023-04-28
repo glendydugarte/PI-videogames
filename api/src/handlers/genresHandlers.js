@@ -1,12 +1,14 @@
 
-/*const {getGenres} = require("../controllers")
+const getAllGenres = require("../controllers/genresControllers")
 
-const getGenresHandler = async(req,res)=>{
-    const {genres} = req.query;
-   
-    const results = await getGenres() 
-    res.status(200).json(results)
-   
+const getGenresHandler = async(req,res)=> {
+
+    try {
+    const results = await getAllGenres()
+    res.status(200).json(results);
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    } 
 
 }
-module.exports = { getGenresHandler}*/
+module.exports = { getGenresHandler};

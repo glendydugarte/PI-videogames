@@ -1,6 +1,5 @@
 const { videogame } = require("../db");
 const axios = require("axios");
-const Genres = require("../models/Genres");
 const { API_KEY} = process.env
 
 const cleanArray = (arr) => // esta funcion me ayuda a mostrar info necesaria
@@ -44,9 +43,9 @@ const getAllVideogames = async ()=>{
 
 };
 
-const searchVideogameByName = async (name)=>{
+const searchVideogameByName = async (name, limit = 15)=>{
     const URL = `https://api.rawg.io/api/games`
-    const dbVideogames = await videogame.findAll({where: {name: name}, limit: 15});
+    const dbVideogames = await videogame.findAll({where: {name: name}, limit: limit});
     const apiVideogamesRaw = (await axios.get(`${URL}?search=${name}&page_size=15&key=${API_KEY}`)).data.results // https://api.rawg.io/api/games?search={game}
     const apiVideogames = cleanArray(apiVideogamesRaw)
 
@@ -67,8 +66,9 @@ let bdId= {}
 
  }
 
-const createVideogame = async( name, description, platforms, background_image, released, rating, )=> {
+const createVideogame = async( name, description, platforms, background_image, released, rating, genres)=> {
 const newVideogame = await videogame.create({ name, description, platforms, background_image, released, rating, created: true}) //Videogame.create es una promesa
+await newVideogame.set(genres)
 return newVideogame;
 }
 

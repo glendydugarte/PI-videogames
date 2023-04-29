@@ -55,7 +55,7 @@ const getAllVideogames = async ()=>{
 
 const searchVideogameByName = async (name, limit = 15)=>{
     const URL = `https://api.rawg.io/api/games`
-    const dbVideogames = await videogame.findAll({where: {name: {[Op.iLike]: `%${name}%`}}, limit: limit});
+    const dbVideogames = await videogame.findAll({where: {name: {[Op.iLike]: `%${name}%`}}, limit: limit, include:[{ model: genres, attributes: ["name"]}]});
     const apiVideogamesRaw = (await axios.get(`${URL}?search=${name}&key=${API_KEY}`)).data.results // https://api.rawg.io/api/games?search={game}
     const apiVideogames = cleanArray(apiVideogamesRaw.slice(0,limit))
 
@@ -69,7 +69,7 @@ let apiId = {}
 let bdId= {}
  source === "api" //pregunto si es de api
  ?  apiId = (await axios.get(`${URL}${id}?key=${API_KEY}`)).data //lo busca en api
- : bdId =(await videogame.findByPk(id, { include: { model: genres, through:{attributtes: ["name"],},},})) // sino, en bdd
+ : bdId =(await videogame.findByPk(id, { include: { model: genres, through:{attributes: ["name"],},},})) // sino, en bdd
   apiId= cleanObj(apiId)
 
   return  source === "api" ? apiId : bdId;

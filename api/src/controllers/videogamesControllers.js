@@ -1,6 +1,7 @@
-const { videogame } = require("../db");
+const { videogame, genres } = require("../db");
 const axios = require("axios");
 const { API_KEY} = process.env
+const {Op} = require("sequelize")
 
 const cleanArray = (arr) => // esta funcion me ayuda a mostrar info necesaria
     arr.map((elem) => { // este array es el array de videojuegos que viene de la api.
@@ -8,10 +9,11 @@ const cleanArray = (arr) => // esta funcion me ayuda a mostrar info necesaria
         id: elem.id,
         name: elem.name,
         description: elem.description,
-        platforms: elem.platforms,
+        platforms: elem.platforms ? elem.platforms.map((elem)=>elem.platform.name) : [],
         rating: elem.rating,
         released: elem.released,
         background_image: elem.background_image,
+        genre:  elem.genres.map((elem)=>elem.name),
         created: false
        };
        
@@ -22,20 +24,28 @@ const cleanArray = (arr) => // esta funcion me ayuda a mostrar info necesaria
         id: obj.id,
         name: obj.name,
         description: obj.description,
-        platforms: obj.platforms,
+        platforms: obj.platforms ? obj.platforms.map((elem)=>elem.platform.name) : [],
         rating: obj.rating,
         released: obj.released,
         background_image: obj.background_image,
+        genre: obj.genres,
         created: false
        };
        
     }; 
-
+     
 
 
 const getAllVideogames = async ()=>{
    const URL = `https://api.rawg.io/api/games`
-   const dbVideogames = await videogame.findAll();
+   const dbVideogames = await videogame.findAll(
+    { include: {
+         model: genres, 
+            through: {
+                attributes: [],
+            },
+        },
+    });
    const apiVideogamesRaw = (await axios.get(`${URL}?key=${API_KEY}`)).data.results
    const apiVideogames = cleanArray(apiVideogamesRaw)
    
@@ -45,9 +55,9 @@ const getAllVideogames = async ()=>{
 
 const searchVideogameByName = async (name, limit = 15)=>{
     const URL = `https://api.rawg.io/api/games`
-    const dbVideogames = await videogame.findAll({where: {name: name}, limit: limit});
-    const apiVideogamesRaw = (await axios.get(`${URL}?search=${name}&page_size=15&key=${API_KEY}`)).data.results // https://api.rawg.io/api/games?search={game}
-    const apiVideogames = cleanArray(apiVideogamesRaw)
+    const dbVideogames = await videogame.findAll({where: {name: {[Op.iLike]: `%${name}%`}}, limit: limit});
+    const apiVideogamesRaw = (await axios.get(`${URL}?search=${name}&key=${API_KEY}`)).data.results // https://api.rawg.io/api/games?search={game}
+    const apiVideogames = cleanArray(apiVideogamesRaw.slice(0,limit))
 
     return [...apiVideogames, ...dbVideogames] 
 }
@@ -59,16 +69,15 @@ let apiId = {}
 let bdId= {}
  source === "api" //pregunto si es de api
  ?  apiId = (await axios.get(`${URL}${id}?key=${API_KEY}`)).data //lo busca en api
- : bdId =(await videogame.findByPk(id, { includes: { model : genres}})) // sino, en bdd
+ : bdId =(await videogame.findByPk(id, { include: { model: genres, through:{attributtes: ["name"],},},})) // sino, en bdd
   apiId= cleanObj(apiId)
 
   return  source === "api" ? apiId : bdId;
-
+//138b219a-6015-4aa6-88c7-48e4b7daa973
  }
 
-const createVideogame = async( name, description, platforms, background_image, released, rating, genres)=> {
+const createVideogame = async( name, description, platforms, background_image, released, rating,)=> {
 const newVideogame = await videogame.create({ name, description, platforms, background_image, released, rating, created: true}) //Videogame.create es una promesa
-await newVideogame.set(genres)
 return newVideogame;
 }
 

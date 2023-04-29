@@ -1,0 +1,11 @@
+
+.navBar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #87c877;
+    flex-direction: row;
+    border: 1px solid greenyellow;
+    border-radius: 15px;
+
+
+}

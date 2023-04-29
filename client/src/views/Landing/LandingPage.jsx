@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import "./landing.css"
+import "./LandingPage.css"
 
 
-export default function Landing(){
+ function Landing(){
     return (
         <div>
            <h1 className='TitleLanding'>¡Welcome to AppGames!</h1>
@@ -18,3 +18,4 @@ export default function Landing(){
         </div>
     )
 }
+export default Landing;

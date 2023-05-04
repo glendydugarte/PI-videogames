@@ -46,7 +46,7 @@ const getAllVideogames = async ()=>{
             },
         },
     });
-   const apiVideogamesRaw = (await axios.get(`${URL}?key=${API_KEY}`)).data.results
+   const apiVideogamesRaw = (await axios.get(`${URL}?key=${API_KEY}&page=5`)).data.results
    const apiVideogames = cleanArray(apiVideogamesRaw)
    
     return [...dbVideogames, ...apiVideogames] // retorno la copia que hay en cada array
@@ -55,7 +55,7 @@ const getAllVideogames = async ()=>{
 
 const searchVideogameByName = async (name, limit = 15)=>{
     const URL = `https://api.rawg.io/api/games`
-    const dbVideogames = await videogame.findAll({where: {name: {[Op.iLike]: `%${name}%`}}, limit: limit, include:[{ model: genres, attributes: ["name"]}]});
+    const dbVideogames = await videogame.findAll({where: {name: {[Op.iLike]: `%${name}%`}}, limit: limit, include:[{ model: genres, attributes: ['name'] }]});
     const apiVideogamesRaw = (await axios.get(`${URL}?search=${name}&key=${API_KEY}`)).data.results // https://api.rawg.io/api/games?search={game}
     const apiVideogames = cleanArray(apiVideogamesRaw.slice(0,limit))
 
@@ -69,15 +69,16 @@ let apiId = {}
 let bdId= {}
  source === "api" //pregunto si es de api
  ?  apiId = (await axios.get(`${URL}${id}?key=${API_KEY}`)).data //lo busca en api
- : bdId =(await videogame.findByPk(id, { include: { model: genres, through:{attributes: ["name"],},},})) // sino, en bdd
+ : bdId =(await videogame.findByPk(id, { include: { model: genres, through:{attributtes: ["name"],},},})) // sino, en bdd
   apiId= cleanObj(apiId)
 
   return  source === "api" ? apiId : bdId;
 //138b219a-6015-4aa6-88c7-48e4b7daa973
  }
 
-const createVideogame = async( name, description, platforms, background_image, released, rating,)=> {
+const createVideogame = async( name, description, platforms, background_image, released, rating, genres)=> {
 const newVideogame = await videogame.create({ name, description, platforms, background_image, released, rating, created: true}) //Videogame.create es una promesa
+newVideogame.addGenres(genres);
 return newVideogame;
 }
 

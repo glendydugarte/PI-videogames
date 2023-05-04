@@ -1,7 +1,8 @@
+
 import Detail from './Detail/Detail';
 import Form from './Form/Form';
-//import Nav from './Components/Nav';
+import NotFound from './NotFound/NotFound';
 import Home from './Home/Home';
 import LandingPage from './Landing/LandingPage';
 
-export {Detail, Form, Home, LandingPage}
+export {Detail, Form, Home, LandingPage, NotFound}

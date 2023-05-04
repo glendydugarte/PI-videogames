@@ -1,19 +1,26 @@
 
 //import { connect, useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import React from "react";
+import "./card.css"
 
-
-function Card(props) { 
-    const { id, name, genres, image, onClose } = props;
-    return ( <div className="presentacionCard">
-        
-    <button className="botonX" onClick={()=>onClose(id)}>X</button>
-
-    <NavLink to={`/detail/${id}`} >
+function Card({id, name, background_image, genre}) { 
+    
+    return ( 
+    <div className="presentacionCard">
+      <div> 
+      <Link to={`/videogames/${id}`}>
        <h2 className="name">{name}</h2>
-    </NavLink>
-    <h2 claassName="infoGenres">{genres}</h2>
-    <img className="image" src={image} alt="" /> 
+    </Link>
+      </div>
+    <img className= "image" src={background_image} alt={name} /> 
+   <div>
+   {Array.isArray(genre) && genre.length > 0 ?
+        genre.map((elem, index) => <h5 key={index}>{elem}</h5>)
+        :
+        <p>No genres available</p> }
+   </div>
+   
     </div>
     )
        }

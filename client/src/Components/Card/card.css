@@ -1,0 +1,15 @@
+
+
+.name{
+color:yellow;
+};
+ 
+.image {border-radius: 10px;
+background-color: slateblue;
+max-width: 30%;
+max-height: 5%;
+margin: 0 auto;
+margin-top: 20px;
+margin-left: 20px;
+padding: 10px;
+display: inline-block}

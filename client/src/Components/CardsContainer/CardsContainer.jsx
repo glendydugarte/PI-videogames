@@ -1,23 +1,33 @@
-
+import React from 'react';
 import { useSelector} from 'react-redux';
-import Card from './Components/Card/Card';
+import Card from '../Card/Card';
+import "./CardsContainer.css"
+
 
 
 function CardsContainer() {
    const {allVideogames} = useSelector(state => state)
+  
    return (
-      <div>
+      <div className='cardsContainer'>
         {allVideogames.map((videogame)=>
-         <Card
+         <Card  
+         key={videogame.id}
             id={videogame.id}
             name={videogame.name}
-            genres={videogame.genres}
-            image={videogame.image}
-          
-               />
+            genre= {videogame.genre}
+            background_image={videogame.background_image}
+            
+          />
+         
          )}
       </div>
    )
 }
 
 export default CardsContainer;
+
+
+
+
+

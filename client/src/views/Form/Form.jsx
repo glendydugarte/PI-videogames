@@ -46,20 +46,63 @@ function Form() {
         setForm({ ...form, [property]: value })
     };
 
-    const validate = (form)=>{
-        if (!form.name.trim()) {
-            setErrors({...errors, name: "Name is required"});
-          } else if (form.name.length < 2 || form.name.length > 50) {
-            setErrors({...errors, name: "Name must be between 2 and 50 characters"});;
-          }
+   
+        const validate = (form) => {
+            let newErrors= {};
+          
+            // Name validation
+            if (!form.name.trim()) {
+              newErrors.name = "Name is required";
+            } else if (form.name.length < 2 || form.name.length > 50) {
+              newErrors.name = "Name must be between 2 and 50 characters";
+            }
+          
+            // Background image validation
+            if (!form.background_image.trim()) {
+              newErrors.background_image = "Image URL is required";
+            } else if (
+              !/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(form.background_image.trim())
+            ) {
+              newErrors.background_image = "Invalid image URL";
+            }
+          
+            // Description validation
+            if (!form.description.trim()) {
+              newErrors.description = "Description is required";
+            } else if (form.description.length < 10 || form.description.length > 500) {
+              newErrors.description = "Description must be between 10 and 500 characters";
+            }
+          
+            // Released validation
+            if (!form.released.trim()) {
+              newErrors.released = "Release date is required";
+            } else if (!/^\d{4}-\d{2}-\d{2}$/.test(form.released.trim())) {
+              newErrors.released = "Invalid date format";
+            }
+          
+            // Rating validation
+            if (!form.rating.trim()) {
+              newErrors.rating = "Rating is required";
+            } else if (form.rating < 0 || form.rating > 5) {
+              newErrors.rating = "Rating must be between 0 and 5";
+            }
+          
+            // Genre validation
+            if (!form.genre.length) {
+              newErrors.genre = "At least one genre is required";
+            }
+          
+          setErrors(newErrors);
+          };
+          
         
-    }
+    
 
     const submitHandler = (event) => {
         event.preventDefault()
         axios.post("http://localhost:3001/videogames", form)
             .then(res => alert(res))
-            .catch(errors=> alert(errors))
+            .catch(err=> alert(err))
 
     }
     

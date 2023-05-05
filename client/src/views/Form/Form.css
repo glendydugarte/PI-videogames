@@ -1,0 +1,123 @@
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid blue;
+  }
+  .form-containerBig {
+    max-width: 300px;
+    max-height: 300px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid blue;
+  }
+  
+  
+  .form-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .form-container input[type="text"],
+  .form-container input[type="url"],
+  .form-container input[type="date"],
+  .form-container input[type="number"],
+  .form-container input[type="checbox"]
+  .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .form-input-check[type="checkbox"] {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  
+  .form-container button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  .selectfont3 {
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    background-color: #008CBA;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .selectfont3:hover {
+    background-color: #006B8E;
+  }
+
+  .form-genres {
+    display:inline;
+    margin: auto;
+    border-collapse: collapse;
+    width: 50%;
+  }
+  
+  .form-genres label {
+    display:flex;
+    border-bottom: 1px transparent;
+    margin: 0;
+    padding: 0px;
+    cursor: pointer;
+    height: 0px;
+  }
+  
+  .form-genres input[type="checkbox"] {
+    display:inline;
+    padding: 0px;
+  }
+  
+  .form-genres input[type="checkbox"]:checked + label {
+    background-color: #3f21c4;
+  }
+  
+  .form-genres label:hover {
+    background-color: #f5f5f5;
+  }
+  .divGenres{
+    border: solid 2px greenyellow;
+    max-height: 700px;
+    max-width: 800px;
+  }
+  .name2{
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+  }
+  .genres{
+    max-height: 400px;
+    max-width: 500px;
+    display: inline-flex;
+    margin-left: 0;
+  }
+  .released{
+    margin: auto;
+  }
+  .errors{
+    color: red;
+    font-size: smaller;
+    margin-top: 0px;
+  }

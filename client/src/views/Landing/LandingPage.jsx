@@ -7,12 +7,8 @@ import "./LandingPage.css"
     return (
         <div>
            <h1 className='TitleLanding'>¡Welcome to AppGames!</h1>
-            <img className="ImageLanding" alt= ""
-            src ="https://e7.pngegg.com/pngimages/429/526/png-clipart-super-nintendo-entertainment-system-video-game-consoles-retrogaming-nintendo-64-action-game-game-video-game.png"
-            ></img> 
-
-            <NavLink to = "/home">
-            <button className = "botonHome">Home</button>
+            <NavLink className ="botonHome" to = "/home">
+            <button className ="botonHome">Home</button>
             </NavLink>
 
         </div>

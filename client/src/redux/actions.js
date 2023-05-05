@@ -126,10 +126,10 @@ export function getGenres() {
 
 export function getPlatforms() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/videogames", {});
+    var response = await axios.get("http://localhost:3001/videogames", {});
     return dispatch({
-      type: "GET_PLATAFORMS",
-      payload: json.data,
+      type: "GET_PLATFORMS",
+      payload: response.data,
     });
   };
 }

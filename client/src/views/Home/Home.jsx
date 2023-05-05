@@ -22,7 +22,7 @@ function Home() {
     return (
 
         <div>
-            <h1 className='TitleLanding'>¡HOME!</h1>
+            <h1 className='TitleLanding'>¡Videogames App!</h1>
             <SearchBar></SearchBar>
             <CardsContainer></CardsContainer>
 

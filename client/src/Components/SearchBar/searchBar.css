@@ -1,0 +1,14 @@
+.button{
+    margin: auto;
+    border-radius: 10px;
+    background-color: greenyellow;
+    font-size: small;
+    color: black;
+};
+
+.search{
+    border: solid white 2px;
+    color: black;
+    
+
+}

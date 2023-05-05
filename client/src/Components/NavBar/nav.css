@@ -2,10 +2,12 @@
 .navBar {
     display: flex;
     justify-content: space-around;
-    background-color: #87c877;
+    background-color: #90b486;
     flex-direction: row;
     border: 1px solid greenyellow;
     border-radius: 15px;
+    max-width: 50%;
+    margin: auto;
 
 
 }

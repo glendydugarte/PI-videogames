@@ -1,0 +1,18 @@
+.botonHome {
+    background-color: #4CAF50; /* color de fondo */
+    color: rgb(0, 0, 0); /* color de texto */
+    padding: 16px 32px; /* padding interno */
+    text-align: center; /* centrado horizontal */
+    display: inline-block; /* hace que el botón se comporte como un elemento en línea */
+    font-size: 16px; /* tamaño de texto */
+    margin: 10px; /* margen exterior */
+    cursor: pointer; /* muestra el cursor de selección */
+    border-radius: 8px; /* bordes redondeados */
+    transition: all 0.3s ease 0s; /* animación de transición */
+  }
+  
+  button:hover {
+    background-color: #3e8e41; /* color de fondo en hover */
+   
+  }
+  

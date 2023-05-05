@@ -22,34 +22,37 @@ function cleanDescription(str) {
     },[id, dispatch]);
     
     return ( 
-    <div> Back
-        <Link to= "/home">
-            <button> Back</button>
+    <div className="nameComponent">
+        <h1 className="TitleLanding">Detail Videogame</h1>
+
+        <Link className ="botonHome" to= "/home">
+            <button className="botonHome">Back</button>
         </Link>
             { 
             videogame.name ? ( <div>
-        <h2>{id}</h2>
-        <h2>{videogame.name}</h2>
-        <img src={videogame.background_image} alt=""/>
+        <h2 className="idDetail">{id}</h2>
+        <h2 className="nameDetail">{videogame.name}</h2>
+        <img className="imageDetail"src={videogame.background_image} alt=""/>
+        
         <h2>Genres</h2>
-        <ul>
+        <ul className="genreContainer">
         {videogame.genre?.map((genre, index) => (
   <div key={index}>
-    <h3>{genre.name}</h3>
-    <p>Id: {genre.id}</p>
-    <p>Slug: {genre.slug}</p>
-    <p>Games Count: {genre.games_count}</p>
-    <img src={genre.image_background} alt="Genre background"/>
+    <h3 className="nameDetail">{genre.name}</h3>
+    <p className="idDetail">Id: {genre.id}</p>
+    <p className="idDetail">Slug: {genre.slug}</p>
+    <p className="idDetail">Games Count: {genre.games_count}</p>
+    <img className="imageDetail"src={genre.image_background} alt="Genre background"/>
   </div>
 ))}
         </ul>
-        <p>Description: {cleanDescription(videogame.description)}</p>
-        <h2>Released Date: {videogame.released}</h2>
-        <h2>{videogame.rating}</h2>
-        <h2>Platforms</h2>
-        <ul>
+        <p className="description">Description: {cleanDescription(videogame.description)}</p>
+        <h2 className="nameDetail">Released Date: <p className="idDetail">{videogame.released}</p></h2>
+        <h2 className="nameDetail">Rating: <p className="idDetail">{videogame.rating}</p></h2>
+        <h2 className="nameDetail">Platforms</h2>
+        <ul className="idDetail">
         {videogame.platforms?.map((elem, index)=>(
-            <li key={index}>{elem}</li>
+            <li className="platDetail" key={index}>{elem}</li>
         ))}
         </ul>    
     </div>) : (<p>Loading...</p>)

@@ -64,20 +64,14 @@ const getAllVideogames = async ()=>{
         },
     });
     const dbVideogames = cleanArrayDb(dbVideogamesRaw)
-   const apiVideogamesRaw = (await axios.get(`${URL}?key=${API_KEY}&page=5`)).data.results//linea 13
+   const apiVideogamesRaw = (await axios.get(`${URL}?key=${API_KEY}`)).data.results//linea 13
    const apiVideogames = cleanArrayApi(apiVideogamesRaw)
    
     return [...dbVideogames, ...apiVideogames] // retorno la copia que hay en cada array
 
 };
 
-/*const getPlatformsFromApi = async () => {
-    const videogames = (await axios.get(`${URL}?key=${API_KEY}&page=5`)).data.results;
-    let platformsFromApi = videogames.map((videogame) => videogame.platform).flat();
 
-    platformsFromApi = [...new Set(platformsFromApi)]; //Elimina registros repetidos del array
-return platformsFromApi;
-};*/
 
 const searchVideogameByName = async (name, limit = 15)=>{
     const URL = `https://api.rawg.io/api/games`

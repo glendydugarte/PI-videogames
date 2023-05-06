@@ -125,16 +125,17 @@ export function getGenres() {
 
 
 export function getPlatforms() {
-  return async function (dispatch) {
-    var platforms = await axios.get("http://localhost:3001/videogames");
-    let response = platforms.data.map((elem)=>elem.platforms).flat()
-    response = [... new Set(response)]
-    return dispatch({
-      type: GET_PLATFORMS,
-      payload: response
-    });
+  return function (dispatch) {
+    axios
+      .get("http://localhost:3001/platforms")
+      .then((response) => {
+        dispatch({ type: GET_PLATFORMS, payload: response.data });
+      })
+      .catch(() => {
+        alert("Error, platforms not found");
+      });
   };
-}
+  }
 
 
 

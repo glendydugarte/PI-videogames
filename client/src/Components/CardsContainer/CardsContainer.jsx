@@ -15,7 +15,7 @@ function CardsContainer() {
          key={videogame.id}
             id={videogame.id}
             name={videogame.name}
-            genre= {videogame.genre}
+            genres= {videogame.genres}
             background_image={videogame.background_image}
             
           />

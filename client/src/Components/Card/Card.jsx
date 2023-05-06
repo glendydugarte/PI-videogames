@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import React from "react";
 import "./card.css"
 
-function Card({id, name, background_image, genre}) { 
+function Card({id, name, background_image, genres}) { 
     
     return ( 
     <div className="presentacionCard">
@@ -18,8 +18,8 @@ function Card({id, name, background_image, genre}) {
       </div>
     
    <div>
-   {Array.isArray(genre) && genre.length > 0 ?
-        genre.map((elem, index) => <h5 key={index}>{elem}</h5>)
+   {Array.isArray(genres) && genres.length > 0 ?
+        genres.map((elem, index) => <h5 key={index}>{elem}</h5>)
         :
         <p>No genres available</p> }
    </div>

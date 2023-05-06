@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_VIDEOGAMES, GET_VIDEOGAMES_DETAIL, GET_VIDEOGAMES_BY_NAME, CLEAN_DETAIL_VIDEOGAME } from "./typeActions";
+import { GET_VIDEOGAMES, GET_VIDEOGAMES_DETAIL, GET_VIDEOGAMES_BY_NAME, CLEAN_DETAIL_VIDEOGAME, GET_GENRES, GET_PLATFORMS } from "./typeActions";
 
 const URL= "http://localhost:3001";
 
@@ -114,7 +114,7 @@ export function getGenres() {
     axios
       .get("http://localhost:3001/genres")
       .then((response) => {
-        dispatch({ type: "GET_GENRES", payload: response.data });
+        dispatch({ type: GET_GENRES, payload: response.data });
       })
       .catch(() => {
         alert("Error, genres not found");
@@ -126,10 +126,12 @@ export function getGenres() {
 
 export function getPlatforms() {
   return async function (dispatch) {
-    var response = await axios.get("http://localhost:3001/videogames", {});
+    var platforms = await axios.get("http://localhost:3001/videogames");
+    let response = platforms.data.map((elem)=>elem.platforms).flat()
+    response = [... new Set(response)]
     return dispatch({
-      type: "GET_PLATFORMS",
-      payload: response.data,
+      type: GET_PLATFORMS,
+      payload: response
     });
   };
 }

@@ -16,7 +16,8 @@ const validate = (req, res, next)=>{
 
 videogamesRoutes.get("/", getVideogamesHandler);
 videogamesRoutes.get("/:id", getVideogameByIdHandler);
-videogamesRoutes.post("/", validate, postVideogameHandler)
+videogamesRoutes.post("/", validate, postVideogameHandler);
+
 
 
 

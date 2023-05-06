@@ -1,21 +1,22 @@
 .form-container {
     max-width: 500px;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 20px;
     padding: 20px;
     background-color: #f1f1f1;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border: 2px solid blue;
+    border: 2px solid rgb(51, 255, 0);
   }
   .form-containerBig {
-    max-width: 300px;
-    max-height: 300px;
-    margin: 0 auto;
-    padding: 10px;
-    background-color: #f1f1f1;
+    max-width: 400px;
+    max-height: 50px;
+    margin: auto;
+    padding: 5px;
+    background-color: #99ed93;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border: 2px solid blue;
+    border: 2px solid rgb(53, 53, 98);
   }
   
   
@@ -56,10 +57,11 @@
     font-weight: bold;
     border-radius: 5px;
     border: none;
-    background-color: #008CBA;
-    color: #ffffff;
-    padding: 10px 20px;
+    background-color: #99ed93;
+    color: hsl(0, 0%, 0%);
+    padding: 5px 10px;
     margin-right: 10px;
+    margin-top: 7px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
   }

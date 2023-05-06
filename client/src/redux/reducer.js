@@ -1,4 +1,4 @@
-import { CLEAN_DETAIL_VIDEOGAME, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, GET_VIDEOGAMES_DETAIL,  } from "./typeActions";
+import { CLEAN_DETAIL_VIDEOGAME, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, GET_VIDEOGAMES_DETAIL, GET_PLATFORMS, GET_GENRES } from "./typeActions";
 
 
 const initialState = {
@@ -38,13 +38,13 @@ const initialState = {
             };
       
   
-      case "GET_GENRES":
+      case GET_GENRES:
         return {
           ...state,
           allGenres: action.payload,
         };
   
-      case "GET_PLATFORMS":
+      case GET_PLATFORMS:
         return {
           ...state,
           allPlatforms: action.payload,

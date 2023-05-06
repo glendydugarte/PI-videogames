@@ -25,7 +25,7 @@ function cleanDescription(str) {
     <div className="nameComponent">
         <h1 className="TitleLanding">Detail Videogame</h1>
 
-        <Link className ="botonHome" to= "/home">
+        <Link to= "/home">
             <button className="botonHome">Back</button>
         </Link>
             { 

@@ -1,18 +1,32 @@
 .botonHome {
     background-color: #4CAF50; /* color de fondo */
     color: rgb(0, 0, 0); /* color de texto */
-    padding: 16px 32px; /* padding interno */
+    padding: 10px 40px; /* padding interno */
     text-align: center; /* centrado horizontal */
     display: inline-block; /* hace que el botón se comporte como un elemento en línea */
     font-size: 16px; /* tamaño de texto */
-    margin: 10px; /* margen exterior */
+    margin: auto; /* margen exterior */
     cursor: pointer; /* muestra el cursor de selección */
     border-radius: 8px; /* bordes redondeados */
     transition: all 0.3s ease 0s; /* animación de transición */
+
   }
   
   button:hover {
     background-color: #3e8e41; /* color de fondo en hover */
    
   }
+
+
+  .divLanding{
+    background-image: url(https://www.mundodeportivo.com/alfabeta/hero/2023/03/super-mario-bros-movie-trailer.jpg?width=1200);
+    background-size: cover;
+   background-position: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  };
   

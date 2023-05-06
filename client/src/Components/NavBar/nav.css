@@ -2,7 +2,7 @@
 .navBar {
     display: flex;
     justify-content: space-around;
-    background-color: #90b486;
+    background-color: #4fdd28;
     flex-direction: row;
     border: 1px solid greenyellow;
     border-radius: 15px;
@@ -10,4 +10,13 @@
     margin: auto;
 
 
+};
+.select{
+    border-radius: 5px;
+    background-color: #4fdd28;
+    font: bold;
+    color: black;
+}
+.link{
+    text-decoration: none;
 }

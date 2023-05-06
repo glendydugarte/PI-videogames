@@ -13,6 +13,15 @@ const getVideogamesHandler = async (req,res)=>{
    
 
 }
+/*const getVideogameByPlatformHandler = async(req,res)=>{
+    try {
+        const results = await getPlatformsFromApi()
+        res.status(200).json(results);
+        } catch (error) {
+            res.status(400).json({error: error.message})
+        } 
+
+}*/
 
     
 const getVideogameByIdHandler = async (req,res)=>{

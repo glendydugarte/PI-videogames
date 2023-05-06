@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGenres} from '../../redux/actions';
+import { getGenres, getPlatforms} from '../../redux/actions';
 import axios from 'axios';
 
 import "./Form.css"
@@ -10,7 +10,8 @@ import "./Form.css"
 function Form() {
     const dispatch = useDispatch();
     const { allGenres } = useSelector((state) => state);
-
+    const {allPlatforms} = useSelector((state)=>state)
+    console.log(allPlatforms)
     const [form, setForm] = useState({
         name: "",
         background_image: "",
@@ -19,7 +20,7 @@ function Form() {
         released: "",
         rating: "",
         Descripción: "",
-        genre: []
+        genres: []
     });
 
     const [errors, setErrors] = useState({
@@ -37,6 +38,9 @@ function Form() {
         dispatch(getGenres())
     }, [dispatch])
 
+    useEffect(() => {
+      dispatch(getPlatforms())
+  }, [dispatch])
 
     const changeHandler = (event) => {
         const property = event.target.name;
@@ -88,7 +92,7 @@ function Form() {
             }
           
             // Genre validation
-            if (!form.genre.length) {
+            if (!form.genres.length) {
               newErrors.genre = "At least one genre is required";
             }
           
@@ -99,9 +103,10 @@ function Form() {
     
 
     const submitHandler = (event) => {
-        event.preventDefault()
+      console.log(form)  
+      event.preventDefault()
         axios.post("http://localhost:3001/videogames", form)
-            .then(res => alert(res))
+            .then(res => alert("Videogame Created"))
             .catch(err=> alert(err))
 
     }
@@ -110,10 +115,21 @@ function Form() {
         const { value, checked } = event.target;
       
         if (checked) {
-          setForm({ ...form, genre: [...form.genre, value] });
+          setForm({ ...form, genres: [...form.genres, value] });
         } else {
-          const newGenres = form.genre.filter((genre) => genre !== value);
-          setForm({ ...form, genre: newGenres });
+          const newGenres = form.genres.filter((genre) => genre !== value);
+          setForm({ ...form, genres: newGenres });
+        }
+      };
+
+      const handlePlatformChange = (event) => {
+        const { value, checked } = event.target;
+      
+        if (checked) {
+          setForm({ ...form, platforms: [...form.platforms, value] });
+        } else {
+          const newPlatforms = form.platforms.filter((platform) => platform !== value);
+          setForm({ ...form, platforms: newPlatforms  });
         }
       };
 
@@ -123,9 +139,7 @@ function Form() {
         <form className="form-container" onSubmit={submitHandler}>
 
             <div className="form-containerBig">
-                <NavLink to="/home">
-                    <button className="selectfont3">Go home!</button>
-                </NavLink>
+               
                 <h3 className="name2">CREATE NEW VIDEOGAME</h3>
                 <br></br>
             </div>
@@ -161,11 +175,22 @@ function Form() {
 
             <div>
                 <label className="form-label">Platforms: </label>
-                <input type="text" value={form.platforms} name="platforms" onChange={changeHandler}></input>
+                {allPlatforms.map((platform, index) => (
+                    <div  key={index}>
+                        <input
+                            type="checkbox"
+                            name="platform"
+                            value={platform}
+                            onChange={handlePlatformChange}
+                            checked={form.platforms.includes(platform)}
+                            />
+                        
+                        <label className="genres">{platform}</label>
                 <span className="errors">{errors.platforms}</span>
 
             </div>
-
+            ))}
+              </div>
             <div className="form-genres"> </div>
             <div className="divGenres">
                 <label className="name2">Genres: </label>
@@ -176,7 +201,7 @@ function Form() {
                             name="genre"
                             value={genre.id}
                             onChange={handleGenreChange}
-                            checked={form.genre.includes(genre.id.toString())}
+                            checked={form.genres.includes(genre.id.toString())}
                             />
                         
                         <label className="genres">{genre.name}</label>
@@ -186,6 +211,9 @@ function Form() {
            </div>
 
             <button  className="selectfont3" type="submit">Create</button>
+            <NavLink to="/home">
+                    <button className="selectfont3">Home</button>
+                </NavLink>
 
         </form>
 

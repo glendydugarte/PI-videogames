@@ -28,8 +28,7 @@ function cleanDescription(str) {
         <Link to= "/home">
             <button className="botonHome">Back</button>
         </Link>
-            { 
-            videogame.name ? ( <div>
+        {videogame.name ? ( <div>
         <h2 className="idDetail">{id}</h2>
         <h2 className="nameDetail">{videogame.name}</h2>
         <img className="imageDetail"src={videogame.background_image} alt=""/>
@@ -55,10 +54,13 @@ function cleanDescription(str) {
             <li className="platDetail" key={index}>{elem}</li>
         ))}
         </ul>    
-    </div>) : (<p>Loading...</p>)
-
-            }  
-            </div>
-            );
+    </div>) : (<p>Loading...</p>)      
 }
+
+
+           
+
+         
+            </div>)}
+            
 export default Detail;

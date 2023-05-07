@@ -14,6 +14,7 @@ function cleanDescription(str) {
     const videogame = useSelector((state)=> state.videogamesDetails);
     console.log(videogame)
 
+
     useEffect(()=>{
         dispatch(getDetails(id));
         return ()=>{
@@ -28,7 +29,9 @@ function cleanDescription(str) {
         <Link to= "/home">
             <button className="botonHome">Back</button>
         </Link>
-        {videogame.name ? ( <div>
+
+        { 
+            videogame.name ? ( <div>
         <h2 className="idDetail">{id}</h2>
         <h2 className="nameDetail">{videogame.name}</h2>
         <img className="imageDetail"src={videogame.background_image} alt=""/>
@@ -44,7 +47,7 @@ function cleanDescription(str) {
     <img className="imageDetail"src={genre.image_background} alt="Genre background"/>
   </div>
 ))}
-        </ul>
+       </ul>
         <p className="description">Description: {cleanDescription(videogame.description)}</p>
         <h2 className="nameDetail">Released Date: <p className="idDetail">{videogame.released}</p></h2>
         <h2 className="nameDetail">Rating: <p className="idDetail">{videogame.rating}</p></h2>
@@ -54,7 +57,8 @@ function cleanDescription(str) {
             <li className="platDetail" key={index}>{elem}</li>
         ))}
         </ul>    
-    </div>) : (<p>Loading...</p>)      
+    </div>) : (<p>Loading...</p>)
+     
 }
 
 

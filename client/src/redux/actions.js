@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_VIDEOGAMES, GET_VIDEOGAMES_DETAIL, GET_VIDEOGAMES_BY_NAME, CLEAN_DETAIL_VIDEOGAME, GET_GENRES, GET_PLATFORMS } from "./typeActions";
+import { GET_VIDEOGAMES, GET_VIDEOGAMES_DETAIL, GET_VIDEOGAMES_BY_NAME, CLEAN_DETAIL_VIDEOGAME, GET_GENRES, GET_PLATFORMS, FILTER_BY_GENRE, FILTER_CREATED, ORDER_BY_NAME, ORDER_BY_RATING, DELETE_GAME } from "./typeActions";
 
 const URL= "http://localhost:3001";
 
@@ -50,21 +50,21 @@ export function cleanDetail(){
 
 export const filterVideogamesByGenre = (payload) => {
   return {
-    type: "FILTER_BY_GENRE",
+    type: FILTER_BY_GENRE,
     payload: payload,
   };
 };
 
 export const orderByName = (payload) => {
   return {
-    type: "ORDER_BY_NAME",
+    type: ORDER_BY_NAME,
     payload: payload,
   };
 };
 
 export const orderByRating = (payload) => {
   return {
-    type: "ORDER_BY_RATING",
+    type: ORDER_BY_RATING,
     payload: payload,
   };
 };
@@ -159,33 +159,10 @@ export function getListGenres() {
 export function filterCreated(value) {
   // console.log(payload)
   return {
-    type: "FILTER_CREATED",
+    type: FILTER_CREATED,
     payload: value,
   };
 }
-
-
-
-export const postVideoGames = (payload) => {
-  return async function () {
-    try {
-      const json = await axios.post(
-        "http://localhost:3001/videogames",
-        payload
-      );
-      return {
-        type: "SUBMIT_GAME",
-        json: json.data,
-      };
-    } catch (e) {
-      console.log(e);
-    }
-  };
-};
-
-
-
-
 
 
 
@@ -195,11 +172,11 @@ export function deleteGame(id){
     axios.delete(`http://localhost:3001/videogames/${id}`)
     .then((response)=>{
       dispatch({
-        type: "DELETE_GAME"
+        type: DELETE_GAME
       })
     })
     .catch(() => {
-      alert("No se puede borrar");
+      alert("Error Delete");
     });
   }
 }

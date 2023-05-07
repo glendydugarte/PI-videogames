@@ -1,12 +1,13 @@
-import { CLEAN_DETAIL_VIDEOGAME, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, GET_VIDEOGAMES_DETAIL, GET_PLATFORMS, GET_GENRES } from "./typeActions";
+import { CLEAN_DETAIL_VIDEOGAME, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, GET_VIDEOGAMES_DETAIL, GET_PLATFORMS, GET_GENRES, FILTER_BY_GENRE, ORDER_BY_NAME, ORDER_BY_RATING, DELETE_GAME, FILTER_CREATED } from "./typeActions";
 
 
 const initialState = {
     //videogames: [],
     allVideogames: [],
+    videogames: [],
     allGenres: [],
     videogamesDetails: {},
-    allPlatforms: []
+    allPlatforms: [],
   };
   
   export default function rootReducer(state = initialState, action) {
@@ -17,6 +18,7 @@ const initialState = {
         return {
           ...state,
           allVideogames: action.payload,
+         
         };
   
       case GET_VIDEOGAMES_BY_NAME:
@@ -52,46 +54,37 @@ const initialState = {
   
    
   
-      /*case "FILTER_BY_GENRE":
-        const allStateGames = state.allVideogames;
-        const tempGames = allStateGames.filter((p)=> {
-          if (p.genre) {
-            const genres = p.genre;
+      case FILTER_BY_GENRE:
+     
+        const allGames = state.allVideogames;
+        const filterGame = allGames.filter((elem)=> {
+          if (elem.genres) {
+            const genres = elem.genres;
             return genres.includes(action.payload);
           }
+          return false; 
         });
         return {
           ...state,
-          videogames: action.payload === "sinFiltro" ? allStateGames : tempGames,
+          allVideogames: action.payload === "sinFiltro" ? allGames : filterGame,
         };
-  
-      case "SUBMIT_GAME":
-        return {
-          ...state,
-          resPost: action.json,
-        };
-  
-        case "DELETE_GAME":
-          return{
-            ...state
-          }
-        
-      case "FILTER_CREATED":
+
+        case FILTER_CREATED:
         // uso ternario
         const allGameApiDB = state.allVideogames;
         const createFilter =
           action.payload === "created"
-            ? allGameApiDB.filter((p) => p.createInDb)
-            : state.allVideogames.filter((p) => !p.createInDb);
+            ? allGameApiDB.filter((elem) => elem.created)
+            : allGameApiDB.filter((elem) => !elem.created);
         return {
           ...state,
-          videogames: action.payload === "all" ? allGameApiDB : createFilter,
+          allVideogames: action.payload === "all" ? allGameApiDB : createFilter,
         };
-  
-      case "ORDER_BY_NAME":
+
+        case ORDER_BY_NAME:
         let sortedArr =
           action.payload === "asc"
-            ? state.videogames.sort(function (a, b) {
+            ? state.allVideogames.sort(function (a, b) {
                 if (a.name > b.name) {
                   return 1;
                 }
@@ -102,7 +95,7 @@ const initialState = {
   
                 return 0;
               })
-            : state.videogames.sort(function (a, b) {
+            : state.allVideogames.sort(function (a, b) {
                 if (a.name > b.name) {
                   return -1;
                 }
@@ -115,13 +108,14 @@ const initialState = {
               });
         return {
           ...state,
-          videogames: sortedArr, // paso al estado el ordenamiento
+          allVideogames: sortedArr, // paso al estado el ordenamiento
         };
   
-      case "ORDER_BY_RATING":
+      
+      case ORDER_BY_RATING:
         let RsortedArr =
-          action.payload === "rasd"
-            ? state.videogames.sort(function (a, b) {
+          action.payload === "ls"
+            ? state.allVideogames.sort(function (a, b) {
                 if (a.rating > b.rating) {
                   return 1;
                 }
@@ -132,7 +126,7 @@ const initialState = {
   
                 return 0;
               })
-            : state.videogames.sort(function (a, b) {
+            : state.allVideogames.sort(function (a, b) {
                 if (a.rating > b.rating) {
                   return -1;
                 }
@@ -145,8 +139,14 @@ const initialState = {
               });
         return {
           ...state,
-          videogames: RsortedArr, // paso al estado el ordenamiento
-        };*/
+          allVideogames: RsortedArr, // paso al estado el ordenamiento
+        };
+
+        case DELETE_GAME:
+          return{
+            ...state
+          }
+        
       default:
         return state;
     }

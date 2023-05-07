@@ -15,7 +15,7 @@ function Home() {
     const genres = useSelector((state) => state.allGenres);
     //const allGames = useSelector((state) => state.videogames)
     const [order, setOrder] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
+   // const [currentPage, setCurrentPage] = useState(1);
    
  useEffect(() => {
         dispatch(getVideogames());
@@ -25,7 +25,7 @@ function Home() {
     function handleSort(p) {
         p.preventDefault();
         dispatch(orderByName(p.target.value)); //despacho la accion
-        setCurrentPage(1)
+        //setCurrentPage(1)
         setOrder(`Ordenado ${p.target.value}`); //es un estado local vacio, lo uso para modif estado local y renderize
       }
     
@@ -38,7 +38,7 @@ function Home() {
       function handleSortRating(p) {
         p.preventDefault();
         dispatch(orderByRating(p.target.value)); //despacho la accion
-        setCurrentPage(1);
+       // setCurrentPage(1);
         setOrder(`Ordenado ${p.target.value}`); //es un estado local vacio, lo uso para modif estado local y renderize
       }
 

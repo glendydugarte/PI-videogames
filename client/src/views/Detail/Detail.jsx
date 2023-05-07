@@ -38,7 +38,8 @@ function cleanDescription(str) {
         
         <h2>Genres</h2>
         <ul className="genreContainer">
-        {videogame.genre?.map((genre, index) => (
+        { !videogame.created ? 
+        videogame.genre?.map((genre, index) => (
   <div key={index}>
     <h3 className="nameDetail">{genre.name}</h3>
     <p className="idDetail">Id: {genre.id}</p>
@@ -46,7 +47,16 @@ function cleanDescription(str) {
     <p className="idDetail">Games Count: {genre.games_count}</p>
     <img className="imageDetail"src={genre.image_background} alt="Genre background"/>
   </div>
-))}
+)) : (
+    <div>
+      {videogame.genres?.map((genres, index) => (
+        <div key={index}>
+          <h3 className="nameDetail">{genres.name}</h3>
+        </div>
+      ))}
+    </div>
+  )}
+ 
        </ul>
         <p className="description">Description: {cleanDescription(videogame.description)}</p>
         <h2 className="nameDetail">Released Date: <p className="idDetail">{videogame.released}</p></h2>

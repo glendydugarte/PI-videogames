@@ -56,13 +56,13 @@ function Home() {
         <div>
             <h1 className='TitleLanding'>¡Videogames App!</h1>
             <SearchBar></SearchBar>
-            <button className="selectfont" onClick={(e) => handleClick(e)}>
+            <button className="selectB" onClick={(e) => handleClick(e)}>
             Reload
           </button>
 
             <select
               defaultValue={"DEFAULT"}
-              className="selectfont2"
+              className="select"
               onChange={(p) => handleSort(p)}
             >
               <option value="DEFAULT" disabled>
@@ -74,7 +74,7 @@ function Home() {
 
             <select
               defaultValue={"DEFAULT"}
-              className="selectfont2"
+              className="select"
               onChange={(p) => handlefilterCreated(p)}
             >
               <option value="DEFAULT" disabled>
@@ -88,7 +88,7 @@ function Home() {
 
             <select
               defaultValue={"DEFAULT"}
-              className="selectfont2"
+              className="select"
               onChange={(p) => handleSortRating(p)}
             >
               <option value="DEFAULT" disabled>
@@ -100,7 +100,7 @@ function Home() {
 
             <select
               defaultValue={"sinFiltro"}
-              className="selectfont2"
+              className="select"
               onChange={(event) => handleFilterGamesByGenre(event)}
             >
               <option value="sinFiltro">Genres</option>

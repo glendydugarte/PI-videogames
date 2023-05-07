@@ -1,7 +1,7 @@
 import {React, useEffect} from 'react'
 import "./Detail.css"
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, Link} from 'react-router-dom'
+import { useParams, NavLink} from 'react-router-dom'
 import { cleanDetail, getDetails } from '../../redux/actions'
  
 function cleanDescription(str) {
@@ -25,18 +25,13 @@ function cleanDescription(str) {
     return ( 
     <div className="nameComponent">
         <h1 className="TitleLanding">Detail Videogame</h1>
-
-        <Link to= "/home">
-            <button className="botonHome">Back</button>
-        </Link>
-
         { 
             videogame.name ? ( <div>
         <h2 className="idDetail">{id}</h2>
         <h2 className="nameDetail">{videogame.name}</h2>
         <img className="imageDetail"src={videogame.background_image} alt=""/>
         
-        <h2>Genres</h2>
+        <h2 className="genreTitle">Genres</h2>
         <ul className="genreContainer">
         { !videogame.created ? 
         videogame.genre?.map((genre, index) => (
@@ -56,7 +51,6 @@ function cleanDescription(str) {
       ))}
     </div>
   )}
- 
        </ul>
         <p className="description">Description: {cleanDescription(videogame.description)}</p>
         <h2 className="nameDetail">Released Date: <p className="idDetail">{videogame.released}</p></h2>
@@ -70,6 +64,10 @@ function cleanDescription(str) {
     </div>) : (<p>Loading...</p>)
      
 }
+        <NavLink to= "/home">
+            <button className="back">Back</button>
+        </NavLink>
+
 
 
            

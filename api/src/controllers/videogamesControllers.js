@@ -3,6 +3,29 @@ const axios = require("axios");
 const { API_KEY} = process.env
 const {Op} = require("sequelize")
 
+
+const infoApi = async()=>{
+const promises = [];
+for (let i =1; i<=5; i++){
+    promises.push(
+        axios.get( `https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
+    );
+}
+await Promise.all(promises).then(
+    function(values){
+        const apiResults = values[0].data.results
+        .concat(values[1].data.results)
+        .concat(values[2].data.results)
+        .concat(values[3].data.results)
+        .concat(values[4].data.results)
+    },
+    {function(err){
+        console.log(err)
+    },
+}
+);
+}
+
 const cleanArrayApi = (arr) => // esta funcion me ayuda a mostrar info necesaria
     arr.map((elem) => { // este array es el array de videojuegos que viene de la api.
        return {

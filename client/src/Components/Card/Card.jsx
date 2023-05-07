@@ -9,7 +9,7 @@ function Card({id, name, background_image, genres}) {
     return ( 
     <div className="presentacionCard">
       <div> 
-      <NavLink className="navLink" to={`/videogames/${id}`} >
+      <NavLink className="link" to={`/videogames/${id}`} >
        <h2 className="name">{name}</h2>
     </NavLink>
       </div>

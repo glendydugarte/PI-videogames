@@ -11,3 +11,54 @@
     -webkit-text-fill-color: transparent;
 
 }
+
+select {
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: hwb(254 29% 21%);;
+    color: #333;
+    appearance: none; /* Desactiva la apariencia nativa del select */
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  
+  /* Estilos para el hover */
+  select:hover {
+    border-color: #999;
+  }
+  
+  /* Estilos para cuando está enfocado */
+  select:focus {
+    outline: none;
+    border-color: #4d90fe;
+    box-shadow: 0 0 5px rgba(77, 144, 254, 0.5);
+  }
+  
+  /* Estilos para las opciones */
+  select option {
+    font-size: 16px;
+    padding: 8px 12px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  /* Estilos para las opciones seleccionadas */
+  select option:checked {
+    background-color: #4d90fe;
+    color: #fff;
+  }
+  
+  .selectB{
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: hwb(254 29% 21%);
+    color: #333;
+    appearance: none; /* Desactiva la apariencia nativa del select */
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  

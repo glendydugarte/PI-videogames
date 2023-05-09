@@ -4,28 +4,6 @@ const { API_KEY} = process.env
 const {Op} = require("sequelize")
 
 
-const infoApi = async()=>{
-const promises = [];
-for (let i =1; i<=5; i++){
-    promises.push(
-        axios.get( `https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
-    );
-}
-await Promise.all(promises).then(
-    function(values){
-        const apiResults = values[0].data.results
-        .concat(values[1].data.results)
-        .concat(values[2].data.results)
-        .concat(values[3].data.results)
-        .concat(values[4].data.results)
-    },
-    {function(err){
-        console.log(err)
-    },
-}
-);
-}
-
 const cleanArrayApi = (arr) => // esta funcion me ayuda a mostrar info necesaria
     arr.map((elem) => { // este array es el array de videojuegos que viene de la api.
        return {
@@ -73,9 +51,33 @@ const cleanArrayApi = (arr) => // esta funcion me ayuda a mostrar info necesaria
        
     }; 
      
+    const getAllVideogames = async () => {
+        const URL = `https://api.rawg.io/api/games`;
+        const dbVideogamesRaw = await videogame.findAll({
+          include: {
+            model: genres,
+            attributes: ["name"],
+            through: {
+              attributes: [],
+            },
+          },
+        });
+        const dbVideogames = cleanArrayDb(dbVideogamesRaw);
+      
+        const apiVideogames = [];
+        for (let i = 1; i < 6; i++) {
+          const response = await axios.get(`${URL}?key=${API_KEY}&page=${i}`);
+          const apiVideogamesRaw = response.data.results;
+          apiVideogames.push(...apiVideogamesRaw);
+        }
+        const cleanApiVideogames = cleanArrayApi(apiVideogames);
+       
+      
+        return [...dbVideogames, ...cleanApiVideogames];
+      };
+      
 
-
-const getAllVideogames = async ()=>{
+/*const getAllVideogames = async ()=>{
    const URL = `https://api.rawg.io/api/games`
    const dbVideogamesRaw = await videogame.findAll(
     { include: {
@@ -87,12 +89,13 @@ const getAllVideogames = async ()=>{
         },
     });
     const dbVideogames = cleanArrayDb(dbVideogamesRaw)
+    
    const apiVideogamesRaw = (await axios.get(`${URL}?key=${API_KEY}`)).data.results//linea 13
    const apiVideogames = cleanArrayApi(apiVideogamesRaw)
    
     return [...dbVideogames, ...apiVideogames] // retorno la copia que hay en cada array
 
-};
+};*/
 
 
 

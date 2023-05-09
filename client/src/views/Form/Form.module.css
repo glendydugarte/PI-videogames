@@ -105,6 +105,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 10 px;
+    margin-top: 10px;
   }
   .name2{
     display: block;

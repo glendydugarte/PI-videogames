@@ -9,7 +9,7 @@
     cursor: pointer; /* muestra el cursor de selección */
     border-radius: 8px; /* bordes redondeados */
     transition: all 0.3s ease 0s; /* animación de transición */
-    margin-top: 150px
+    margin-top: 250px
 
   }
   
@@ -28,16 +28,4 @@
   };
 
   
-  .welcome {
-    font-size: 5rem;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.5rem;
-    color: #fff;
-    text-shadow: 2px 2px 4px #eac2eb;
-    background-image: linear-gradient(to right, #d437b5, #3a81c4, #000000, #5a2095, #192950);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  

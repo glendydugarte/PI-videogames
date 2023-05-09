@@ -15,7 +15,7 @@ function Pagination({pagina,setPagina,maximo}) {
     setInput(parseInt(input) - 1 )
     setPagina(parseInt(pagina) - 1)
   }
-  const maxMin = (e) =>{
+  const max = (e) =>{
     if(
         parseInt(e.target.value < 1) ||
         parseInt(e.target.value) > Math.ceil(maximo) ||
@@ -32,14 +32,13 @@ function Pagination({pagina,setPagina,maximo}) {
     return (
     <div  className={style.pagination}  >
       <button disabled={pagina===1 || pagina < 1 } onChange={e=>Onchange(e)} onClick={prevpage} className= {style.ppage}> Previous Page </button>
-      <input maxMin={e=>maxMin(e)} name='page'autoComplete='off' value={input} className= {style.page} />
-      <p> </p>
-      <button disabled={pagina=== Math.ceil(maximo)|| pagina > maximo } onClick={nextpage}  className={style.npage} >Next Page</button>
+      <input max={e=>max(e)} name='page'autoComplete='off' value={input} className={style.page}></input>
+      <button disabled={pagina=== Math.ceil(maximo)|| pagina > maximo } onClick={nextpage}  className={style.ppage}> Next Page</button>
 
     </div>
   )
 }
 
-export default Pagination
+export default Pagination;
 
 

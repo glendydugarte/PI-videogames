@@ -171,9 +171,10 @@ function Form() {
                 <input type="number" value={form.rating} name="rating" onChange={changeHandler}></input>
                 <span className={style.errors}>{errors.rating}</span>
             </div>
-
-            <div>
-                <label className={style.formlabel}>Platforms: </label>
+            <div className= {style.formgenres}> </div>
+            <label className={style.formlabel}>Platforms: </label>
+            <div  className= {style.divGenres}>
+               
                 {allPlatforms.map((platform, index) => (
                     <div  key={index}>
                         <input
@@ -191,8 +192,9 @@ function Form() {
             ))}
               </div>
             <div className= {style.formgenres}> </div>
+            <label className={style.formlabel}> Genres: </label>
             <div className= {style.divGenres}>
-                <label className= {style.divGenres}>Genres: </label>
+               
                 {allGenres.map((genre) => (
                     <div  key={genre.id}>
                         <input

@@ -7,12 +7,10 @@ import style from './LandingPage.module.css'
     return (
         <div className= {style.divLanding}>
             <div>
-            <h1 className= {style.welcome}>¡Welcome to AppGames!</h1>
-            </div>
-          
             <NavLink to = "/home">
             <button className = {style.bHome}>Home</button>
             </NavLink>
+            </div>
 
         </div> 
     )

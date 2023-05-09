@@ -10,7 +10,7 @@ function Form() {
     const dispatch = useDispatch();
     const { allGenres } = useSelector((state) => state);
     const {allPlatforms} = useSelector((state)=>state)
-    console.log(allPlatforms)
+  
     const [form, setForm] = useState({
         name: "",
         background_image: "",

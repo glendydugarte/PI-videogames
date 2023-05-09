@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import { GET_VIDEOGAMES, GET_VIDEOGAMES_DETAIL, GET_VIDEOGAMES_BY_NAME, CLEAN_DETAIL_VIDEOGAME, GET_GENRES, GET_PLATFORMS, FILTER_BY_GENRE, FILTER_CREATED, ORDER_BY_NAME, ORDER_BY_RATING, DELETE_GAME } from "./typeActions";
 
 const URL= "http://localhost:3001";

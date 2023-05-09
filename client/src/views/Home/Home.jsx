@@ -1,5 +1,5 @@
 
-import "./Home.css";
+import style from  './Home.module.css';
 import { React, useEffect, useState } from 'react';
 import { filterCreated, filterVideogamesByGenre, getGenres, getVideogames, orderByName, orderByRating } from '../../redux/actions';
 import { useDispatch, useSelector} from 'react-redux';
@@ -9,14 +9,15 @@ import SearchBar from '../../Components/SearchBar/SearchBar'
 
 
 
+
 function Home() {
- 
-    const dispatch = useDispatch()
+
+  const dispatch = useDispatch()
     const genres = useSelector((state) => state.allGenres);
-    //const allGames = useSelector((state) => state.videogames)
+    //const allGames = useSelector((state) => state.allVideogames)
     const [order, setOrder] = useState("");
-   // const [currentPage, setCurrentPage] = useState(1);
-   
+
+  
  useEffect(() => {
         dispatch(getVideogames());
         dispatch(getGenres());
@@ -47,22 +48,22 @@ function Home() {
         dispatch(filterCreated(event.target.value));
       }
     
-      function handleClick(p) {
+      function handleClick(event) {
         window.location.reload();
       }
 
     return (
 
         <div>
-            <h1 className='TitleLanding'>¡Videogames App!</h1>
+            <h1 className= {style.TitleLanding}>¡Videogames App!</h1>
             <SearchBar></SearchBar>
-            <button className="selectB" onClick={(e) => handleClick(e)}>
+            <button className={style.selectB}  onClick={(event) => handleClick(event)}>
             Reload
           </button>
 
             <select
               defaultValue={"DEFAULT"}
-              className="select"
+              className= {style.select}
               onChange={(p) => handleSort(p)}
             >
               <option value="DEFAULT" disabled>
@@ -74,7 +75,7 @@ function Home() {
 
             <select
               defaultValue={"DEFAULT"}
-              className="select"
+              className={style.select}
               onChange={(p) => handlefilterCreated(p)}
             >
               <option value="DEFAULT" disabled>
@@ -88,7 +89,7 @@ function Home() {
 
             <select
               defaultValue={"DEFAULT"}
-              className="select"
+              className={style.select}
               onChange={(p) => handleSortRating(p)}
             >
               <option value="DEFAULT" disabled>
@@ -100,7 +101,7 @@ function Home() {
 
             <select
               defaultValue={"sinFiltro"}
-              className="select"
+              className={style.select}
               onChange={(event) => handleFilterGamesByGenre(event)}
             >
               <option value="sinFiltro">Genres</option>
@@ -115,9 +116,10 @@ function Home() {
               })}
             </select>
             <CardsContainer></CardsContainer>
-
+         
 
         </div>
+        
     )
 }
 

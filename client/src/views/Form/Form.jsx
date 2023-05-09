@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGenres, getPlatforms} from '../../redux/actions';
 import axios from 'axios';
-
-import "./Form.css"
+import style from '../Form/Form.module.css'
 
 
 function Form() {
@@ -31,7 +30,7 @@ function Form() {
         released: "",
         rating: "",
         Descripción: "",
-        genre: ""
+        genre: "",
     });
 
     useEffect(() => {
@@ -92,9 +91,9 @@ function Form() {
             }
           
             // Genre validation
-            if (!form.genres.length) {
-              newErrors.genre = "At least one genre is required";
-            }
+            //if (!form.genre || form.genre.length === 0) {
+             // newErrors.genre = "At least one genre is required";
+            //}
           
           setErrors(newErrors);
           };
@@ -136,45 +135,45 @@ function Form() {
       
       
     return (
-        <form className="form-container" onSubmit={submitHandler}>
+        <form className=  {style.formcontainer} onSubmit={submitHandler}>
 
-            <div className="form-containerBig">
+            <div className={style.formcontainer}>
                
-                <h3 className="name2">CREATE NEW VIDEOGAME</h3>
+                <h3 className= {style.name2}>CREATE NEW VIDEOGAME</h3>
                 <br></br>
             </div>
             <div>
-                <label className="form-label">Name: </label>
+                <label className= {style.formlabel}>Name: </label>
                 <input type="text" value={form.name} name="name" onChange={changeHandler}></input>
-                <span className="errors">{errors.name}</span>
+                <span className={style.errors}>{errors.name}</span>
             </div>
             <div>
-                <label className="form-label">Image</label>
+                <label className={style.formlabel}>Image</label>
                 <input type="url" value={form.background_image} name="background_image" onChange={changeHandler}></input>
-                <span className="errors">{errors.background_image}</span>
+                <span className={style.errors}>{errors.background_image}</span>
             </div>
 
             <div>
-                <label className="form-label">Description: </label>
+                <label className={style.formlabel}>Description: </label>
                 <textarea type="text" value={form.description} name="description" onChange={changeHandler}></textarea>
-                <span className="errors">{errors.description}</span>
+                <span className={style.errors}>{errors.description}</span>
             </div>
 
 
             <div>
-                <label className="form-label">Released</label>
+                <label className={style.formlabel}>Released</label>
                 <input className="released" type="date" value={form.released} name="released" onChange={changeHandler}></input>
-                <span className="errors">{errors.released}</span>
+                <span className={style.errors}>{errors.released}</span>
             </div>
 
             <div>
-                <label className="form-label">Rating: </label>
+                <label className={style.formlabel}>Rating: </label>
                 <input type="number" value={form.rating} name="rating" onChange={changeHandler}></input>
-                <span className="errors">{errors.rating}</span>
+                <span className={style.errors}>{errors.rating}</span>
             </div>
 
             <div>
-                <label className="form-label">Platforms: </label>
+                <label className={style.formlabel}>Platforms: </label>
                 {allPlatforms.map((platform, index) => (
                     <div  key={index}>
                         <input
@@ -185,15 +184,15 @@ function Form() {
                             checked={form.platforms.includes(platform)}
                             />
                         
-                        <label className="genres">{platform}</label>
-                <span className="errors">{errors.platforms}</span>
+                        <label className={style.genres}>{platform}</label>
+                <span className={style.errors}>{errors.platforms}</span>
 
             </div>
             ))}
               </div>
-            <div className="form-genres"> </div>
-            <div className="divGenres">
-                <label className="name2">Genres: </label>
+            <div className= {style.formgenres}> </div>
+            <div className= {style.divGenres}>
+                <label className= {style.divGenres}>Genres: </label>
                 {allGenres.map((genre) => (
                     <div  key={genre.id}>
                         <input
@@ -204,15 +203,15 @@ function Form() {
                             checked={form.genres.includes(genre.id.toString())}
                             />
                         
-                        <label className="genres">{genre.name}</label>
-                        <span className="errors">{errors.genre}</span>
+                        <label className={style.genres}>{genre.name}</label>
+                        <span className={style.errors}>{errors.genre}</span>
                     </div>
                 ))}
            </div>
 
-            <button  className="selectfont3" type="submit">Create</button>
+            <button  className={style.selectfont3} type="submit">Create</button>
             <NavLink to="/home">
-                    <button className="selectfont3">Home</button>
+                    <button className={style.selectfont3}>Home</button>
                 </NavLink>
 
         </form>

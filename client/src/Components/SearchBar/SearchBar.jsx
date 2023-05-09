@@ -1,7 +1,7 @@
 import React from 'react'
-import "./searchBar.css"
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import style from '../SearchBar/searchBar.module.css'
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { getNameVideoGames } from '../../redux/actions';
 
 
@@ -23,13 +23,13 @@ function handleSubmit(e){
 }
   return (
     <div>
-    <form className="search">
+    <form className={style.search}>
       <input
-        className="button"
+        className= {style.button}
         type="text"
         placeholder="Search game by name..." onChange={(e)=>handleInputChange(e)}/>
 
-      <button type="submit" className="button" onClick = {(e)=> handleSubmit(e)}>
+      <button type="submit" className= {style.button} onClick = {(e)=> handleSubmit(e)}>
         Search
       </button>
     </form>

@@ -1,17 +1,20 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import "./LandingPage.css"
+import style from './LandingPage.module.css'
 
 
  function Landing(){
     return (
-        <div className='divLanding'>
-           <h1 className='TitleLanding'>¡Welcome to AppGames!</h1>
+        <div className= {style.divLanding}>
+            <div>
+            <h1 className= {style.welcome}>¡Welcome to AppGames!</h1>
+            </div>
+          
             <NavLink to = "/home">
-            <button className ="botonHome">Home</button>
+            <button className = {style.bHome}>Home</button>
             </NavLink>
 
-        </div>
+        </div> 
     )
 }
 export default Landing;

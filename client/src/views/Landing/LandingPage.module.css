@@ -1,0 +1,43 @@
+.bHome {
+    background-color: hwb(266 4% 11%); /* color de fondo */
+    color: rgb(0, 0, 0); /* color de texto */
+    padding: 10px 40px; /* padding interno */
+    text-align: center; /* centrado horizontal */
+    display: inline-block; /* hace que el botón se comporte como un elemento en línea */
+    font-size: 16px; /* tamaño de texto */
+    margin: auto; /* margen exterior */
+    cursor: pointer; /* muestra el cursor de selección */
+    border-radius: 8px; /* bordes redondeados */
+    transition: all 0.3s ease 0s; /* animación de transición */
+    margin-top: 150px
+
+  }
+  
+
+
+  .divLanding{
+    background-image: url(https://img.freepik.com/vector-gratis/ilustracion-detallada-sala-juegos_23-2148923561.jpg?w=996&t=st=1683649081~exp=1683649681~hmac=4a280bb13e409f6030e56d9ce69a2fbe6fab8a2f9207e8c2fce43a7a655a049b);
+    background-size: cover;
+   background-position: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  };
+
+  
+  .welcome {
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px #eac2eb;
+    background-image: linear-gradient(to right, #d437b5, #3a81c4, #000000, #5a2095, #192950);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

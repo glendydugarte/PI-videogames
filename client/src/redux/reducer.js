@@ -18,6 +18,7 @@ const initialState = {
         return {
           ...state,
           allVideogames: action.payload,
+          videogames: action.payload,
          
         };
   
@@ -56,7 +57,7 @@ const initialState = {
   
       case FILTER_BY_GENRE:
      
-        const allGames = state.allVideogames;
+        const allGames = state.videogames;
         const filterGame = allGames.filter((elem)=> {
           if (elem.genres) {
             const genres = elem.genres;
@@ -71,7 +72,7 @@ const initialState = {
 
         case FILTER_CREATED:
         // uso ternario
-        const allGameApiDB = state.allVideogames;
+        const allGameApiDB = state.videogames;
         const createFilter =
           action.payload === "created"
             ? allGameApiDB.filter((elem) => elem.created)

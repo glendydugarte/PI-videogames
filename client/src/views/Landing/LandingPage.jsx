@@ -8,7 +8,7 @@ import style from './LandingPage.module.css'
         <div className= {style.divLanding}>
             <div>
             <NavLink to = "/home">
-            <button className = {style.bHome}>¡Star!</button>
+            <button className = {style.bHome}>¡Start!</button>
             </NavLink>
             </div>
 

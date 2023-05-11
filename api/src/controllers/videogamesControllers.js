@@ -77,27 +77,6 @@ const cleanArrayApi = (arr) => // esta funcion me ayuda a mostrar info necesaria
       };
       
 
-/*const getAllVideogames = async ()=>{
-   const URL = `https://api.rawg.io/api/games`
-   const dbVideogamesRaw = await videogame.findAll(
-    { include: {
-         model: genres, 
-         attributes: ['name'],
-            through: {
-                attributes: [],
-            },
-        },
-    });
-    const dbVideogames = cleanArrayDb(dbVideogamesRaw)
-    
-   const apiVideogamesRaw = (await axios.get(`${URL}?key=${API_KEY}`)).data.results//linea 13
-   const apiVideogames = cleanArrayApi(apiVideogamesRaw)
-   
-    return [...dbVideogames, ...apiVideogames] // retorno la copia que hay en cada array
-
-};*/
-
-
 
 const searchVideogameByName = async (name, limit = 15)=>{
     const URL = `https://api.rawg.io/api/games`

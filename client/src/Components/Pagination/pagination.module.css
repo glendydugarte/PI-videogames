@@ -23,6 +23,18 @@
   height: 15px;
   margin-left: 10px;
   margin-right: 10px
-};
+}
+
+.flpage{
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: hwb(253 53% 11%);
+  color: #333;
+  padding: 8px 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
   

@@ -12,13 +12,15 @@ function CardsContainer() {
   
    const [pagina, setPagina] = useState(1);
    const [porPagina, setPorPagina] = useState(15);
-   const maximo = Games.length / porPagina
+   
+   const maximo = Math.ceil(Games.length / porPagina)
 
 
 
    return (
       <div className= {style.cardsContainer}>
-        <div className={style.container}>{Games.slice((pagina - 1) * porPagina,
+        <div className={style.container}>
+         {Games.slice((pagina - 1) * porPagina,
      (pagina -1) * porPagina + porPagina)
      .map((videogame)=>
          <Card  

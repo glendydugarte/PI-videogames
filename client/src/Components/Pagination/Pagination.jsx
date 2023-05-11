@@ -5,6 +5,14 @@ import  style from '../Pagination/pagination.module.css'
 function Pagination({pagina,setPagina,maximo}) {
   const [input,setInput]= useState(1)
 
+  const firstPage = () =>{
+    setInput(1);
+    setPagina(1)};
+
+  const lastPage = () =>{
+    setInput(maximo);
+    setPagina(maximo)};
+
 
   const nextpage = ()=>{
     setInput(parseInt(input) + 1)
@@ -38,9 +46,12 @@ function Pagination({pagina,setPagina,maximo}) {
   
     return (
     <div  className={style.pagination}  >
+       <button disabled={pagina===1||pagina<1} onClick={firstPage} className={style.flpage}>First page</button>
       <button disabled={pagina===1 || pagina < 1 } onChange={e=>Onchange(e)} onClick={prevpage} className= {style.ppage}> Previous Page </button>
       <input onKeyDown={onKeyDown} onChange={e=>Onchange(e)} name='page'autoComplete='off' value={input} className={style.page}></input>
       <button disabled={pagina=== Math.ceil(maximo)|| pagina > maximo } onClick={nextpage}  className={style.ppage}> Next Page</button>
+<button disabled={pagina===Math.ceil(maximo)||pagina>maximo} onClick={lastPage} className={style.flpage}>Last Page</button>
+
 
     </div>
   )

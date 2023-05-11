@@ -1,0 +1,23 @@
+.notFound {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #f8f9fa;
+        color: #212529;
+        font-family: Arial, sans-serif;
+      };
+      
+      .not {
+        font-size: 5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+      }
+      
+      
+      
+      
+      
+      

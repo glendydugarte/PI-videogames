@@ -1,18 +1,16 @@
 import {React, useEffect} from 'react'
-import "./Detail.css"
+import style from  './Detail.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, NavLink} from 'react-router-dom'
 import { cleanDetail, getDetails } from '../../redux/actions'
  
-function cleanDescription(str) {
-    return str.replace(/<\/?[^>]+(>|$)/g, "");
-  }
+
 
  function Detail(){
     const {id}= useParams();
     const dispatch = useDispatch();
     const videogame = useSelector((state)=> state.videogamesDetails);
-    console.log(videogame)
+ 
 
 
     useEffect(()=>{
@@ -21,51 +19,55 @@ function cleanDescription(str) {
             dispatch(cleanDetail())
         }
     },[id, dispatch]);
+
+    function cleanDescription(str) {
+      return str.replace(/<\/?[^>]+(>|$)/g, "");
+    }
     
     return ( 
-    <div className="nameComponent">
-        <h1 className="TitleLanding">Detail Videogame</h1>
+    <div className={style.nameComponent}>
+        <h1 className={style.TitleLanding}>Detail Videogame</h1>
         { 
             videogame.name ? ( <div>
-        <h2 className="idDetail">{id}</h2>
-        <h2 className="nameDetail">{videogame.name}</h2>
-        <img className="imageDetail"src={videogame.background_image} alt=""/>
+        <h2 className= {style.idDetail}>{id}</h2>
+        <h2 className={style.nameDetail}>{videogame.name}</h2>
+        <img className= {style.imageDetail}src={videogame.background_image} alt=""/>
         
-        <h2 className="genreTitle">Genres</h2>
-        <ul className="genreContainer">
+        <h2 className={style.genreTitle}>Genres</h2>
+        <ul className= {style.genreContainer}>
         { !videogame.created ? 
         videogame.genre?.map((genre, index) => (
   <div key={index}>
-    <h3 className="nameDetail">{genre.name}</h3>
-    <p className="idDetail">Id: {genre.id}</p>
-    <p className="idDetail">Slug: {genre.slug}</p>
-    <p className="idDetail">Games Count: {genre.games_count}</p>
-    <img className="imageDetail"src={genre.image_background} alt="Genre background"/>
+    <h3 className= {genre.name}></h3>
+    <p className={style.idDetail}>Id: {genre.id}</p>
+    <p className={style.idDetail}>Slug: {genre.slug}</p>
+    <p className={style.idDetail}>Games Count: {genre.games_count}</p>
+    <img className={style.imageDetail}src={genre.image_background} alt="Genre background"/>
   </div>
 )) : (
     <div>
       {videogame.genres?.map((genres, index) => (
         <div key={index}>
-          <h3 className="nameDetail">{genres.name}</h3>
+          <h3 className={style.nameDetail}>{genres.name}</h3>
         </div>
       ))}
     </div>
   )}
        </ul>
-        <p className="description">Description: {cleanDescription(videogame.description)}</p>
-        <h2 className="nameDetail">Released Date: <p className="idDetail">{videogame.released}</p></h2>
-        <h2 className="nameDetail">Rating: <p className="idDetail">{videogame.rating}</p></h2>
-        <h2 className="nameDetail">Platforms</h2>
-        <ul className="idDetail">
+        <p className= {style.description}>Description: {cleanDescription(videogame.description)}</p>
+        <h2 className={style.nameDetail}>Released Date: <p className={style.idDetail}>{videogame.released}</p></h2>
+        <h2 className={style.nameDetail}>Rating: <p className={style.idDetail}>{videogame.rating}</p></h2>
+        <h2 className={style.nameDetail}>Platforms</h2>
+        <ul className={style.idDetail}>
         {videogame.platforms?.map((elem, index)=>(
-            <li className="platDetail" key={index}>{elem}</li>
+            <li className= {style.platDetail} key={index}>{elem}</li>
         ))}
         </ul>    
     </div>) : (<p>Loading...</p>)
      
 }
         <NavLink to= "/home">
-            <button className="back">Back</button>
+            <button className={style.back}>Back</button>
         </NavLink>
 
 

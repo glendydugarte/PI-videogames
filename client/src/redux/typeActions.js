@@ -8,4 +8,4 @@ export const FILTER_BY_GENRE = 'FILTER_BY_GENRE';
 export const FILTER_CREATED = 'FILTER_CREATED';
 export const ORDER_BY_NAME = ' ORDER_BY_NAME';
 export const ORDER_BY_RATING  = ' ORDER_BY_RATING';
-export const DELETE_GAME = 'DELETE_GAME';
+export const RESET_FILTERS = "RESET_FILTERS";

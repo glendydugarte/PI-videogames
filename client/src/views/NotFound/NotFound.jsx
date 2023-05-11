@@ -1,15 +1,15 @@
 import React from "react";
 //import image from "../images/error-404.jpg";
-import "./NotFound.css";
+import style from  "./NotFound.module.css";
 
 
 
 function NotFound() {
 
     return (
-        <div>
+        <div className={style.notFound} >
             <div>
-            <h1>NOT FOUND</h1>
+            <h1 className={style.not}>NOT FOUND</h1>
 
             </div>
         </div>

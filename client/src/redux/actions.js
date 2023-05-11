@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_VIDEOGAMES, GET_VIDEOGAMES_DETAIL, GET_VIDEOGAMES_BY_NAME, CLEAN_DETAIL_VIDEOGAME, GET_GENRES, GET_PLATFORMS, FILTER_BY_GENRE, FILTER_CREATED, ORDER_BY_NAME, ORDER_BY_RATING, DELETE_GAME } from "./typeActions";
+import { GET_VIDEOGAMES, GET_VIDEOGAMES_DETAIL, GET_VIDEOGAMES_BY_NAME, CLEAN_DETAIL_VIDEOGAME, GET_GENRES, GET_PLATFORMS, FILTER_BY_GENRE, FILTER_CREATED, ORDER_BY_NAME, ORDER_BY_RATING, RESET_FILTERS } from "./typeActions";
 
 const URL= "http://localhost:3001";
 
@@ -43,11 +43,6 @@ export function cleanDetail(){
 }
 
 
-
-
-
-
-
 export const filterVideogamesByGenre = (payload) => {
   return {
     type: FILTER_BY_GENRE,
@@ -82,30 +77,11 @@ export const orderByRating = (payload) => {
 //   };
 // }
 
-
-
-
-
-export const getGenderType = () => {
-  return async function (dispatch) {
-    try {
-      let gt = [];
-      let json = await axios.get("http://localhost:3001/videogames");
-      let mapper = json.data.map((e) => e.genderTypes);
-      mapper.forEach((a) =>
-        Array.isArray(a)
-          ? a.forEach((e) => (!gt.includes(e) ? gt.push(e) : e))
-          : a
-      );
-      return dispatch({
-        type: "GET_GENRE_TYPES",
-        payload: gt,
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
-};
+export function resetfilters(){
+  return {
+    type: RESET_FILTERS,
+  }
+}
 
 
 
@@ -139,23 +115,6 @@ export function getPlatforms() {
 
 
 
-export function getListGenres() {
- 
-  return function (dispatch) {
-    axios
-      .get("http://localhost:3001/genres")
-      .then((response) => {
-        dispatch({ type: "GET_GENRES", payload: response.data });
-      })
-      .catch(() => {
-        alert("Error genres not found");
-      });
-  };
-}
-
-
-
-
 export function filterCreated(value) {
   // console.log(payload)
   return {
@@ -167,19 +126,6 @@ export function filterCreated(value) {
 
 
 
-export function deleteGame(id){
-  return function(dispatch){
-    axios.delete(`http://localhost:3001/videogames/${id}`)
-    .then((response)=>{
-      dispatch({
-        type: DELETE_GAME
-      })
-    })
-    .catch(() => {
-      alert("Error Delete");
-    });
-  }
-}
 
 
 

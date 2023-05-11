@@ -1,10 +1,11 @@
 
 import style from  './Home.module.css';
 import { React, useEffect, useState } from 'react';
-import { filterCreated, filterVideogamesByGenre, getGenres, getVideogames, orderByName, orderByRating } from '../../redux/actions';
+import { filterCreated, filterVideogamesByGenre, getGenres, getVideogames, orderByName, orderByRating, resetfilters } from '../../redux/actions';
 import { useDispatch, useSelector} from 'react-redux';
 import CardsContainer from '../../Components/CardsContainer/CardsContainer';
 import SearchBar from '../../Components/SearchBar/SearchBar'
+
 
 
 
@@ -34,7 +35,7 @@ function Home() {
     function handleFilterGamesByGenre(event) {
         event.preventDefault();
         dispatch(filterVideogamesByGenre(event.target.value));
-        console.log(event.target.value)
+        //console.log(event.target.value)
       }
       function handleSortRating(p) {
         p.preventDefault();
@@ -47,6 +48,10 @@ function Home() {
         event.preventDefault();
         dispatch(filterCreated(event.target.value));
       }
+
+      function handleClick() {
+        dispatch(resetfilters())
+       }
     
       function handleClick(event) {
         window.location.reload();
@@ -112,9 +117,12 @@ function Home() {
                     {" "}
                     {event.name}{" "}
                   </option>
+
+
                 );
               })}
             </select>
+            <button className={style.selectB} onClick={handleClick}>Reset</button>
             <CardsContainer></CardsContainer>
          
 

@@ -1,13 +1,13 @@
-import { CLEAN_DETAIL_VIDEOGAME, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, GET_VIDEOGAMES_DETAIL, GET_PLATFORMS, GET_GENRES, FILTER_BY_GENRE, ORDER_BY_NAME, ORDER_BY_RATING, DELETE_GAME, FILTER_CREATED } from './typeActions';
+import { CLEAN_DETAIL_VIDEOGAME, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, GET_VIDEOGAMES_DETAIL, GET_PLATFORMS, GET_GENRES, FILTER_BY_GENRE, ORDER_BY_NAME, ORDER_BY_RATING, DELETE_GAME, FILTER_CREATED, RESET_FILTERS } from './typeActions';
 
 
 const initialState = {
-    //videogames: [],
     allVideogames: [],
     videogames: [],
     allGenres: [],
     videogamesDetails: {},
     allPlatforms: [],
+    resetFilter: [],
   };
   
   export default function rootReducer(state = initialState, action) {
@@ -19,6 +19,7 @@ const initialState = {
           ...state,
           allVideogames: action.payload,
           videogames: action.payload,
+          resetFilter: action.payload,
          
         };
   
@@ -142,11 +143,12 @@ const initialState = {
           ...state,
           allVideogames: RsortedArr, // paso al estado el ordenamiento
         };
+        case RESET_FILTERS:
+      return {
+        ...state,
+        allVideoGames: [...state.resetFilter],
+      };
 
-        case DELETE_GAME:
-          return{
-            ...state
-          }
         
       default:
         return state;

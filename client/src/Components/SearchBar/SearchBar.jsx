@@ -10,9 +10,9 @@ import { getNameVideoGames } from '../../redux/actions';
   const [name, setName] = useState("")
 
   function handleInputChange(e){
-    e.preventDefault()
+  
     setName(e.target.value)
-    console.log(name)
+ 
 }
 
 

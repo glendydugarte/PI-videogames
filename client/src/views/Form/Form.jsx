@@ -45,8 +45,8 @@ function Form() {
         const property = event.target.name;
         const value = event.target.value;
         
-        validate({...form,[property]: value})
-        setForm({ ...form, [property]: value })
+        validate({...form,[property]: value}) //...  para crear una copia actualizada del estado y pasar a validate. 
+        setForm({ ...form, [property]: value }) //se actualiza el estado con la nueva información del form. la función validate trabaja con los valores más recientes.
     };
 
    
@@ -86,14 +86,11 @@ function Form() {
             // Rating validation
             if (!form.rating.trim()) {
               newErrors.rating = "Rating is required";
-            } else if (form.rating < 0 || form.rating > 5) {
+            } else if (form.rating < 0 || form.rating > 5 ) {
               newErrors.rating = "Rating must be between 0 and 5";
             }
+            
           
-            // Genre validation
-            //if (!form.genre || form.genre.length === 0) {
-             // newErrors.genre = "At least one genre is required";
-            //}
           
           setErrors(newErrors);
           };
@@ -101,8 +98,7 @@ function Form() {
         
     
 
-    const submitHandler = (event) => {
-      console.log(form)  
+    const submitHandler = (event) => {  
       event.preventDefault()
         axios.post("http://localhost:3001/videogames", form)
             .then(res => alert("Videogame Created"))

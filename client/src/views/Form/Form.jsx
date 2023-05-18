@@ -100,9 +100,14 @@ function Form() {
 
     const submitHandler = (event) => {  
       event.preventDefault()
+      if (errors.name.length){
+        alert("error")
+      } else {
         axios.post("http://localhost:3001/videogames", form)
-            .then(res => alert("Videogame Created"))
-            .catch(err=> alert(err))
+        .then(res => alert("Videogame Created"))
+        .catch(err=> alert(err))
+      }
+       
 
     }
     

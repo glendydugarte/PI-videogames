@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector} from 'react-redux';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination'
@@ -14,7 +14,10 @@ function CardsContainer() {
    const [porPagina, setPorPagina] = useState(15);
    
    const maximo = Math.ceil(Games.length / porPagina)
-
+ 
+   useEffect(()=>{
+   setPagina(1)
+ },[Games])
 
 
    return (
